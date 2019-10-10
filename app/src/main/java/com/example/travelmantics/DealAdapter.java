@@ -23,18 +23,19 @@ import java.util.ArrayList;
 
 public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder> {
 
-
     ArrayList<TravelDeal> deals;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
 
+   // public DealAdapter(Context context){
+     //   FirbaseUtil.opeFbRef("travel",context)
 
     public DealAdapter() {
-        FirebaseUtil.openFbReference("traveldeals");
+        //FirebaseUtil.openFbReference("traveldeals", this);
         mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference = FirebaseUtil.mDatabaseReference;
-        deals = FirebaseUtil.mDeals;
+        this.deals = FirebaseUtil.mDeals;
         mChildListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -72,7 +73,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
     }
     @NonNull
     @Override
-    public DealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DealViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.rv_row, parent, false);
@@ -80,7 +81,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DealViewHolder holder, int position) {
+    public void onBindViewHolder(DealViewHolder holder, int position) {
         TravelDeal deal = deals.get(position);
         holder.bind(deal);
 
@@ -95,7 +96,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         TextView tvDescription;
         TextView tvPrice;
 
-        public DealViewHolder(@NonNull View itemView) {
+        public DealViewHolder(View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
