@@ -30,12 +30,11 @@ public class FirebaseUtil {
     public static ArrayList<TravelDeal> mDeals;
     private static final int RC_SIGN_IN = 123;
     private static ListActivity caller;
-    private FirebaseUtil() {
-    };
+    private FirebaseUtil() {}
     public static boolean isAdmin;
 
 
-    public static void openFbReference(String ref, final DealActivity callerActivity) {
+    public static void openFbReference(String ref, final ListActivity callerActivity) {
         if (firebaseUtil == null) {
             firebaseUtil = new FirebaseUtil();
             mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -58,7 +57,7 @@ public class FirebaseUtil {
 
 
         }
-        mDeals = new ArrayList<TravelDeal>();
+        mDeals = new ArrayList<>();
         mDatabaseReference = mFirebaseDatabase.getReference().child(ref);
     }
 
